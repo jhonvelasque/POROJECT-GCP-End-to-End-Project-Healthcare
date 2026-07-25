@@ -79,7 +79,7 @@ La arquitectura del proyecto está construida sobre **Google Cloud Platform (GCP
 ```mermaid
 graph TD
     %% Fuentes de Datos
-    subgraph Fuentes de Datos (Data Sources)
+    subgraph "Fuentes de Datos (Data Sources)"
         SQL_A[(Cloud SQL: Hospital A)]
         SQL_B[(Cloud SQL: Hospital B)]
         CSV_Claims[Files CSV: Claims]
@@ -87,7 +87,7 @@ graph TD
     end
 
     %% Ingestión
-    subgraph Ingestion Layer (Dataproc/Spark)
+    subgraph "Ingestion Layer (Dataproc/Spark)"
         DP_A[Dataproc: hospitalA_mysqlToLanding.py]
         DP_B[Dataproc: hospitalB_mysqlToLanding.py]
         DP_Claims[Dataproc: claims.py]
@@ -95,20 +95,20 @@ graph TD
     end
 
     %% Almacenamiento Raw
-    subgraph Storage Layer (GCS)
+    subgraph "Storage Layer (GCS)"
         GCS_Landing[GCS: Bucket Landing Zone]
         GCS_Archive[GCS: Bucket Archive Zone]
     end
 
     %% Procesamiento Analítico
-    subgraph Analytics Layer (BigQuery)
+    subgraph "Analytics Layer (BigQuery)"
         BQ_Bronze[Capa Bronce: Tablas Externas / Crudo]
         BQ_Silver[Capa Plata: Limpieza, CDM, SCD Tipo 2]
         BQ_Gold[Capa Oro: Tablas Agregadas / KPI]
     end
 
     %% Orquestación y Visualización
-    subgraph Orquestación y BI
+    subgraph "Orquestación y BI"
         Airflow[Apache Airflow / Composer]
         BI[Herramientas BI / Dashboards]
     end
